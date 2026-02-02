@@ -1,0 +1,9 @@
+---
+azure_resource_group:  "rg-ansible-demo"
+azure_location: "westeurope"
+azure_vnet_name:  "vnet-ansible-demo"
+azure_subnet_name: "subnet-ansible-demo"
+azure_vm_size:  "Standard_B1s"
+azure_admin_username: "azureuser"
+azure_vm_count:  1
+azure_vm_name_prefix: "ansible-demo-vm"
