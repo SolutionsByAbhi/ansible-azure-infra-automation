@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <title>{{  webserver_app_name  }} -  {{  env  | default('env')  }}</title>
+   </head>
+    <body>
+      <h1>{{  webserver_app_name  }}</h1>
+       <p>Environment: {{  env  |  default('unknown') }}</p>
+       <p>Host:  {{  inventory_hostname }}</p>
+       <p>Managed  by  Ansible.</p>
+   </body>
+</html>
