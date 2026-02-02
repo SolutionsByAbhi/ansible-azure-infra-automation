@@ -1,0 +1,10 @@
+---
+- name:  Provision  Azure  infrastructure
+   hosts:  localhost
+   connection:  local
+   gather_facts:  no
+   vars:
+       azure_resource_group: "rg-ansible-demo"
+       azure_location:  "westeurope"
+   roles:
+       -  role: azure_vm
