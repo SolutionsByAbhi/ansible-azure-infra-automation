@@ -1,0 +1,7 @@
+---
+env: dev
+timezone:  "UTC"
+common_packages:
+   -  git
+   -  curl
+   -  htop
