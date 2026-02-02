@@ -1,0 +1,6 @@
+---
+common_packages:
+   -  git
+   -  curl
+   -  vim
+motd_message:  "Managed  by  Ansible –  {{  env  | default('unknown')  }}  environment"
