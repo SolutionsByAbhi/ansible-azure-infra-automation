@@ -1,0 +1,23 @@
+---
+-  name:  Provision Azure  VMs
+   azure.azcollection.azure_rm_virtualmachine:
+       resource_group:  "{{  azure_resource_group }}"
+       name:  "{{  azure_vm_name_prefix }}-{{  item  }}"
+       vm_size: "{{  azure_vm_size  }}"
+       admin_username: "{{  azure_admin_username  }}"
+       ssh_password_enabled: false
+       ssh_public_keys:
+          -  path:  /home/{{  azure_admin_username }}/.ssh/authorized_keys
+              key_data:  "{{  lookup('file', '~/.ssh/id_rsa.pub')  }}"
+       network_interfaces:
+          -  name:  "{{ azure_vm_name_prefix  }}-nic-{{  item  }}"
+             virtual_network:  "{{  azure_vnet_name  }}"
+             subnet:  "{{  azure_subnet_name  }}"
+             public_ip:  yes
+       image:
+          offer:  UbuntuServer
+          publisher:  Canonical
+          sku:  "22_04-lts"
+          version:  latest
+       state: present
+    loop: "{{  range(1,  azure_vm_count  + 1)  |  list  }}"
