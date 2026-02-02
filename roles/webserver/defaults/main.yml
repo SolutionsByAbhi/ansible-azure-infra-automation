@@ -1,0 +1,4 @@
+---
+webserver_listen_port: 80
+webserver_app_name:  "Sample  App"
+webserver_root:  /var/www/html
