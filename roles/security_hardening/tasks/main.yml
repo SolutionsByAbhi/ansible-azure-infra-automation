@@ -1,0 +1,30 @@
+---
+-  name:  Harden  SSH configuration
+    ansible.builtin.lineinfile:
+      path:  /etc/ssh/sshd_config
+       regexp:  "{{ item.regexp  }}"
+       line:  "{{ item.line  }}"
+       state:  present
+      backup:  yes
+   loop:
+       -  {  regexp: '^PermitRootLogin',  line:  "PermitRootLogin  {{ ssh_permit_root_login  }}"  }
+       - {  regexp:  '^PasswordAuthentication',  line: "PasswordAuthentication  {{  ssh_password_authentication  }}" }
+    notify: Restart  sshd
+
+- name:  Ensure  UFW  is installed
+    ansible.builtin.package:
+      name:  ufw
+       state:  present
+
+-  name:  Configure UFW  default  policies
+   ansible.builtin.command:  ufw  default deny  incoming
+   changed_when:  false
+
+- name:  Allow  required  ports
+   ansible.builtin.command:  ufw allow  {{  item  }}/tcp
+   loop:  "{{ firewall_allowed_ports  }}"
+   changed_when:  false
+
+- name:  Enable  UFW
+   ansible.builtin.command:  ufw  enable
+   changed_when:  false
