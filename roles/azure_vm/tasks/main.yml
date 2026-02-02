@@ -1,0 +1,6 @@
+---
+-  name:  Include  network tasks
+    ansible.builtin.include_tasks: network.yml
+
+-  name: Include  VM  tasks
+   ansible.builtin.include_tasks:  vm.yml
