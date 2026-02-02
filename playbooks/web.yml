@@ -1,0 +1,6 @@
+ ---
+ -  name: Deploy  web  stack  only
+    hosts:  web
+    gather_facts:  yes
+    roles:
+        - role:  webserver
