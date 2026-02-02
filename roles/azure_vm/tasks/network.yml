@@ -1,0 +1,18 @@
+ ---
+ -  name: Ensure  resource  group  exists
+    azure.azcollection.azure_rm_resourcegroup:
+        name: "{{  azure_resource_group  }}"
+        location: "{{  azure_location  }}"
+ 
+-  name:  Ensure  virtual network  exists
+    azure.azcollection.azure_rm_virtualnetwork:
+        resource_group:  "{{  azure_resource_group }}"
+        name:  "{{  azure_vnet_name }}"
+        address_prefixes:  "10.0.0.0/16"
+ 
+-  name:  Ensure  subnet exists
+     azure.azcollection.azure_rm_subnet:
+       resource_group:  "{{  azure_resource_group  }}"
+       name:  "{{  azure_subnet_name  }}"
+       address_prefix:  "10.0.1.0/24"
+        virtual_network:  "{{ azure_vnet_name  }}"
