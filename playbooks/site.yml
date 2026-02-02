@@ -1,0 +1,13 @@
+ ---
+ -  name: Apply  baseline  and  security hardening
+     hosts: all
+     gather_facts: yes
+     roles:
+       -  role:  common
+        - role:  security_hardening
+ 
+ - name:  Deploy  web  servers
+    hosts:  web
+    gather_facts:  yes
+    roles:
+        - role:  webserver
